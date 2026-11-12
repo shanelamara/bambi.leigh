@@ -19,3 +19,48 @@ body[data-page="products"] .section-head{align-items:end}
 .preview-piece>span{display:flex;justify-content:space-between;padding-top:15px;font:25px var(--font-display)}
 @media(max-width:600px){.collection-preview-grid{gap:12px}.preview-piece>img{padding:6px}.preview-piece>span{font-size:15px;padding-top:12px}.collection-preview-grid .preview-piece:last-child{display:none}.collection-preview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}body[data-page="products"] .collection{padding-top:32px}body[data-page="products"] .section-head h1{font-size:43px}.catalog-back{margin-bottom:24px}}
 
+.hero{min-height:clamp(540px,calc(100svh - 96px),720px);background:radial-gradient(ellipse at 18% 4%,#dce8f3 0,transparent 43%),radial-gradient(ellipse at 83% 76%,#f0e9d8 0,transparent 45%),#f5f3ed;color:#202f50}
+.hero-layout{min-height:inherit;display:flex;align-items:center;justify-content:center;padding:72px 0 126px;text-align:center}
+.hero-copy{width:min(100%,760px);padding:0}
+.museum-kicker{display:inline-flex;align-items:center;gap:7px;margin:0;padding:7px 17px;border:1px solid #d8dce0;border-radius:30px;background:#fffefaad;color:#27385a;font-size:10px;font-weight:700;letter-spacing:1.3px}
+.museum-kicker span{color:var(--blue)}
+.museum-title{margin:28px 0 24px;color:#202f50;font-family:var(--font-body);font-size:clamp(54px,7vw,88px);font-weight:700;letter-spacing:-.07em;line-height:.98}
+.museum-title em{display:block;color:#233557;font:italic 600 .88em/.98 var(--font-display);letter-spacing:-.055em}
+.hero .hero-lead{max-width:700px;margin:0 auto;font-size:14px;line-height:1.6}
+.hero .hero-actions{justify-content:center;gap:12px;margin-top:38px}
+.museum-shop-link{border-color:#d8dce0;background:#fffefa;color:#202f50;box-shadow:0 8px 18px #28354b0d}
+.museum-badge{position:absolute;z-index:2;display:grid;place-content:center;text-align:center;color:#28334a;font-size:9px;font-weight:700;line-height:1.25}
+.museum-badge--daily{top:12%;left:3%;width:138px;height:138px;border:1px solid #c4d2e0;border-radius:50%;background:#d3e2f2;box-shadow:0 16px 30px #28354b12;transform:rotate(-9deg)}
+.museum-badge--touch{top:9%;right:4%;padding:16px 22px;border:1px solid #ddd4c1;border-radius:14px;background:#eee5cf;box-shadow:0 14px 28px #28354b0c;transform:rotate(7deg)}
+.museum-badge--handmade{right:9%;bottom:14%;width:118px;height:118px;border:1px solid #e4e0d9;border-radius:50%;background:#fffefa;box-shadow:0 16px 28px #28354b14;transform:rotate(10deg)}
+.museum-rope{position:absolute;z-index:1;bottom:47px;left:50%;width:min(70%,1320px);height:34px;transform:translateX(-50%)}
+.museum-rope:before{position:absolute;inset:0 0 auto;height:34px;border-bottom:2px solid #aec3e2;border-radius:0 0 50% 50%/0 0 38% 38%;content:""}
+.museum-rope span{position:absolute;top:-2px;width:9px;height:58px;border-radius:8px;background:linear-gradient(90deg,#c3ad78,#e9d8a6 55%,#c6af79)}
+.museum-rope span:first-child{left:0}
+.museum-rope span:last-child{right:0}
+.hero-motion{position:absolute;left:max(18px,calc((100vw - 1280px)/2));bottom:10px;z-index:3;padding:4px 8px;color:#53617a;font-size:10px}
+.hero>.scallop{display:none}
+@media(max-width:850px){
+  .hero{min-height:clamp(560px,calc(100svh - 78px),700px)}
+  .hero-layout{padding:76px 0 126px}
+  .museum-badge--daily{left:3%;width:112px;height:112px}
+  .museum-badge--handmade{right:5%;width:102px;height:102px}
+}
+@media(max-width:600px){
+  .hero{min-height:620px}
+  .hero-layout{min-height:620px;padding:88px 0 116px}
+  .museum-kicker{padding:6px 12px;font-size:8px;letter-spacing:1px}
+  .museum-title{margin:22px 0 18px;font-size:clamp(42px,11vw,62px);letter-spacing:-.065em}
+  .hero .hero-lead{max-width:410px;font-size:12px}
+  .hero .hero-actions{flex-wrap:wrap;gap:9px;margin-top:25px}
+  .hero .hero-actions .btn{min-height:46px;padding:11px 15px;font-size:11px}
+  .museum-badge--daily{top:14px;left:12px;width:72px;height:72px;font-size:7px}
+  .museum-badge--touch{top:16px;right:12px;padding:10px 12px;font-size:7px}
+  .museum-badge--handmade{right:14px;bottom:72px;width:76px;height:76px;font-size:8px}
+  .museum-rope{bottom:42px;width:76%;height:24px}
+  .museum-rope:before{height:24px}
+  .museum-rope span{height:42px}
+  .hero-motion{left:12px;bottom:8px;font-size:9px}
+}
+
+.logo-flower{display:none}
