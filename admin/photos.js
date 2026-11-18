@@ -13,9 +13,10 @@ const confirmation = element('confirmation');
 const label = element('photo-label');
 const file = element('photo-file');
 const published = element('photo-published');
+let maxPhotoBytes = 5 * 1024 * 1024;
 let selectedPhoto;
 
-async function request(path, method = 'GET', data = {}) {
+async function request(path, method = 'GET', data = {}, onSuccess) {
   const options = method === 'GET' ? {} : {
     method,
     headers: { 'Content-Type': 'application/json' },
@@ -28,6 +29,7 @@ async function request(path, method = 'GET', data = {}) {
     error.status = response.status;
     throw error;
   }
+  onSuccess?.(response);
   return result;
 }
 
@@ -108,7 +110,10 @@ function photoCard(photo) {
 }
 
 async function loadGallery() {
-  const photos = await request(endpoint);
+  const photos = await request(endpoint, 'GET', {}, response => {
+    maxPhotoBytes = Number(response.headers.get('X-Photo-Max-Bytes')) || maxPhotoBytes;
+    element('file-help').textContent = `JPEG, PNG, or WebP, up to ${maxPhotoBytes / 1024 ** 2} MB.`;
+  });
   const uploaded = photos.filter(photo => !photo.placement);
   storefrontGallery.replaceChildren(...photos.filter(photo => photo.placement).map(photoCard));
   gallery.replaceChildren(...uploaded.map(photoCard));
@@ -119,7 +124,7 @@ async function loadGallery() {
 }
 
 function readPhoto(upload) {
-  if (upload.size > 5 * 1024 * 1024) throw new Error('Photos must be 5 MB or smaller.');
+  if (upload.size > maxPhotoBytes) throw new Error(`Photos must be ${maxPhotoBytes / 1024 ** 2} MB or smaller.`);
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = () => resolve(String(reader.result).split(',')[1]);

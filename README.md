@@ -47,9 +47,27 @@ Each photo and its metadata are saved together in a private file under
 directory outside the public assets and restrict it to the server account.
 Use one server process per storage directory. Serve the loopback Node process through a TLS reverse proxy,
 set `PUBLIC_ORIGIN` to the external HTTPS origin, and supply the admin code
-through the deployment's secret configuration. Sessions expire after eight hours
-or when the server restarts.
+through the deployment's secret configuration. Sessions expire after eight hours.
+Local sessions also end when the server restarts.
 
 The existing storefront has no photo verifier. The protected
 `GET /api/admin/photos` and `GET /api/admin/photos/{id}/image` endpoints read the
 current records and images from the private files and require an admin session.
+
+## Deploy to Vercel
+
+Deploy this repository root with `vercel.json` included. In the Vercel project's
+**Storage** tab, create and connect a **private** Blob store. This provides the
+`BLOB_READ_WRITE_TOKEN` environment variable and stores photos as private files.
+Under **Settings → Environment Variables**, set `ADMIN_ACCESS_CODE` to a strong
+random secret and set `PUBLIC_ORIGIN` to the exact public site origin, for example
+`https://bambileigh-t9ze.vercel.app`. Apply these settings to Production and
+redeploy. Open `/admin` or `/admin/photos` on the deployed domain.
+
+If `.env.vercel.local` exists in your workspace, copy its `ADMIN_ACCESS_CODE`
+and `PUBLIC_ORIGIN` values into the project's Production environment variables.
+The file stays local. Vercel supplies the Blob token when you connect the store.
+
+Vercel accepts photos up to 3 MB through the admin uploader. The local credential
+file and locally uploaded photos are excluded from deployment. Upload any photos
+you want to keep on the live site through its admin page.

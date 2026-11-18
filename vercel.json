@@ -1,0 +1,14 @@
+{
+  "builds": [
+    {
+      "src": "api/site.js",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["index.html", "products.html", "style.css", "app.js", "display-photos.js", "admin/**", "assets/**"]
+      }
+    }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/api/site.js?__site_path=/$1" }
+  ]
+}

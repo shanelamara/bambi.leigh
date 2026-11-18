@@ -7,6 +7,19 @@ const { randomUUID } = require('node:crypto');
 const recordName = /^([a-f0-9-]{36})\.photo$/;
 const headerLimit = 1024;
 
+function encodePhoto(label, updatedAt, photo, published) {
+  const header = Buffer.from(JSON.stringify({ label, updatedAt, mime: photo.mime, published }) + '\n');
+  return Buffer.concat([header, photo.image]);
+}
+
+function photoSummary(id, metadata) {
+  return { id, label: metadata.label, updatedAt: metadata.updatedAt, published: metadata.published === true };
+}
+
+function sortPhotos(photos) {
+  return photos.sort((a, b) => b.updatedAt.localeCompare(a.updatedAt) || a.id.localeCompare(b.id));
+}
+
 function openPhotoStore(directory) {
   fs.mkdirSync(directory, { recursive: true, mode: 0o700 });
 
@@ -42,10 +55,9 @@ function openPhotoStore(directory) {
   }
 
   function save(id, label, updatedAt, photo, published) {
-    const header = Buffer.from(JSON.stringify({ label, updatedAt, mime: photo.mime, published }) + '\n');
     const temporary = path.join(directory, randomUUID() + '.tmp');
     try {
-      fs.writeFileSync(temporary, Buffer.concat([header, photo.image]), {
+      fs.writeFileSync(temporary, encodePhoto(label, updatedAt, photo, published), {
         flag: 'wx',
         mode: 0o600,
         flush: true
@@ -70,14 +82,12 @@ function openPhotoStore(directory) {
     const photos = [];
     for (const id of ids()) {
       const metadata = read(id);
-      if (metadata) photos.push({
-        id, label: metadata.label, updatedAt: metadata.updatedAt, published: metadata.published === true
-      });
+      if (metadata) photos.push(photoSummary(id, metadata));
     }
-    return photos.sort((a, b) => b.updatedAt.localeCompare(a.updatedAt) || a.id.localeCompare(b.id));
+    return sortPhotos(photos);
   }
 
   return { ids, list, read, save, remove };
 }
 
-module.exports = { openPhotoStore };
+module.exports = { openPhotoStore, recordName, encodePhoto, photoSummary, sortPhotos };
