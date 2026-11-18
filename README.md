@@ -39,6 +39,8 @@ The **Storefront photos** section manages the seven photos already used by the
 homepage, art gallery, and product catalog. Edit a photo there to replace it
 across all of its existing placements, or clear **Show on website** to hide it.
 Use **Additional photos** to add standalone images to the homepage gallery.
+With two or more published photos, the gallery rotates automatically and
+provides previous, next, and pause controls.
 
 Each photo and its metadata are saved together in a private file under
 `.private` by default. For a deployment, set `PHOTO_DATA_DIR` to a persistent

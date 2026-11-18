@@ -33,7 +33,15 @@
 <section id="display-photos" class="gallery section" aria-labelledby="display-photos-title" hidden>
   <div class="wrap">
     <div class="section-head"><h2 id="display-photos-title">Photo gallery</h2></div>
-    <div class="display-photo-grid"></div>
+    <div class="photo-carousel" aria-roledescription="carousel" role="group" aria-labelledby="display-photos-title">
+      <div class="photo-carousel-slides" id="photo-carousel-slides" aria-live="off"></div>
+      <div class="photo-carousel-controls" hidden>
+        <button class="btn" type="button" data-photo-rotation>Pause slideshow</button>
+        <button class="btn" type="button" data-photo-step="-1" aria-label="Previous photo">←</button>
+        <span class="photo-carousel-position" aria-hidden="true"></span>
+        <button class="btn" type="button" data-photo-step="1" aria-label="Next photo">→</button>
+      </div>
+    </div>
   </div>
 </section>
 <section id="commissions" class="commissions section"><div class="wrap commission-layout"><div class="commission-art"><div class="commission-frame"><img src="assets/art/garden.svg" loading="lazy" alt="Demonstration floral illustration for a personalized commission"><span class="tape"></span></div><span class="commission-star" aria-hidden="true">✷</span><p class="handwriting">your idea, a little color,<br>and a whole lot of love.</p></div><div class="commission-copy"><p class="eyebrow">Made just for you / 03</p><h2>Have something<br><em>special in mind?</em></h2><p>Turn your ideas into personalized artwork. A favorite memory, a thoughtful gift, or something you've always imagined. Let's create something meaningful together.</p><div class="commission-types"><button data-commission="Watercolor">01 <span>Watercolor paintings</span> ↗</button><button data-commission="Acrylic">02 <span>Acrylic paintings</span> ↗</button><button data-commission="Illustrations">03 <span>Personalized illustrations</span> ↗</button><button data-commission="Custom">04 <span>Custom artwork</span> ↗</button></div><p id="commission-description" aria-live="polite">Talk with Leigh about your idea, preferred size, style, availability, and pricing.</p><a class="btn btn--primary" href="https://www.facebook.com/share/1CNL4ihfJR/" target="_blank" rel="noopener noreferrer"><span class="fb-icon">f</span> Request a commission on Facebook ↗</a><small>All the details, one friendly conversation.</small></div></div></section>
