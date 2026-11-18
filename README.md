@@ -57,8 +57,9 @@ current records and images from the private files and require an admin session.
 ## Deploy to Vercel
 
 Deploy this repository root with `vercel.json` included. In the Vercel project's
-**Storage** tab, create and connect a **private** Blob store. This provides the
-`BLOB_READ_WRITE_TOKEN` environment variable and stores photos as private files.
+**Storage** tab, create and connect a **private** Blob store with the default
+`BLOB` prefix. This provides `BLOB_STORE_ID` (newer stores, authenticated through
+Vercel OIDC) or `BLOB_READ_WRITE_TOKEN` (older stores) and stores photos as private files.
 Under **Settings → Environment Variables**, set `ADMIN_ACCESS_CODE` to a strong
 random secret and set `PUBLIC_ORIGIN` to the exact public site origin, for example
 `https://bambileigh-t9ze.vercel.app`. Apply these settings to Production and

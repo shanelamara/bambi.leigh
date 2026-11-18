@@ -35,7 +35,9 @@ const digest = value => createHash('sha256').update(value).digest();
 const expectedCode = accessCode && digest(accessCode);
 const cookieName = secure ? '__Host-photo_admin' : 'photo_admin';
 const sessionDuration = 8 * 60 * 60 * 1000;
-const cloud = onVercel && process.env.BLOB_READ_WRITE_TOKEN ? require('./blob-photo-store') : undefined;
+// Newer Blob stores provide only BLOB_STORE_ID; @vercel/blob then authenticates through Vercel OIDC.
+const cloud = onVercel && (process.env.BLOB_READ_WRITE_TOKEN || process.env.BLOB_STORE_ID)
+  ? require('./blob-photo-store') : undefined;
 const sessions = cloud?.sessions || new Map();
 const loginFailures = [];
 const maxImageBytes = (onVercel ? 3 : 5) * 1024 * 1024;
