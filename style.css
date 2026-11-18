@@ -66,3 +66,19 @@ body[data-page="products"] .section-head{align-items:end}
 .logo-flower{display:none}
 .product-card .image-button .secondary-photo{position:absolute;left:12px;bottom:12px;width:28%;height:34%;object-fit:cover;padding:0;border:4px solid var(--cream);border-radius:3px;box-shadow:0 4px 12px #183b7130}
 .studio-photo img{object-fit:contain;background:#fff}
+
+#display-photos[hidden] { display: none; }
+.display-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  gap: 1.5rem;
+}
+.display-photo-grid figure {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid #244d9433;
+  border-radius: .75rem;
+  background: white;
+}
+.display-photo-grid img { aspect-ratio: 4 / 3; height: auto; object-fit: contain; background: #edf4fb; }
+.display-photo-grid figcaption { padding: .65rem 1rem; overflow-wrap: anywhere; }
