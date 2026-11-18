@@ -13,7 +13,7 @@ Included:
 Use Node.js 24 or later and run `node server.js` from this folder. Open
 http://127.0.0.1:3000/ for the storefront.
 
-## Manage authentication photos
+## Manage website photos
 
 For local use, the server can read a strong, unique secret of at least 16
 characters from `.private/admin-access-code`. The folder is excluded from Git.

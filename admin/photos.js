@@ -74,7 +74,7 @@ function openEditor(photo) {
 function openConfirmation(photo) {
   selectedPhoto = photo;
   element('delete-error').textContent = '';
-  element('confirmation-text').textContent = `Delete “${photo.label}” from the authentication photo gallery?`;
+  element('confirmation-text').textContent = `Delete “${photo.label}” from the website photo gallery?`;
   confirmation.showModal();
 }
 
